@@ -15,19 +15,31 @@
 #if statements to check which option to execute
 if [ "$1" =  "memory" ] ; then
 	#memory code
-	echo "memory code"
+	echo "Memory Status in MB"
+	#free command shows memory
+	#-m give it in MB
+	free -m
 
 elif [ "$1" = "disk" ] ; then
 	#disk code
-	echo "disk code"
-
+	echo "Disk Status in MB and GB"
+	#df displays disk information
+	#-h makes it human readable
+	df -h 
 elif [ "$1" = "connection" ] ; then
 	#connection code
 	echo "connection code"
-
+	#ss displays socket information
+	# -l for listening sockets
+	# -t for connected sockets
+	# -n to give port number
+	ss -ltn
 elif [ "$1" = "time" ] ; then
 	#time code
 	echo "time code"
+	#uptime display time up and other information
+	#-p limits to time up
+	uptime -p
 else
 	echo "Error, no option selected"
 	echo "Please enter memory, disk, connection or time as a parameter when running this program"
