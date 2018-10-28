@@ -1,4 +1,8 @@
 #! /bin/bash
+#Script Name: system_info.sh
+#Author: Timothy D'Arcy
+#Date Written: 28/10/18
+#Data Last Modified: 28/10/18
 #The purpose of this script is tell the user one of the following based 
 #on the arguement passed:
 #	Amount of Free and Occupied memory 
