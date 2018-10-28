@@ -6,13 +6,13 @@
 #The purpose of this script is tell the user one of the following based 
 #on the arguement passed:
 #	Amount of Free and Occupied memory 
-#	-- memory
+#		memory
 #	Amount of Free and Occupied disk space 
-#	-- disk
+#		disk
 #	Connection information including IP and MAC address at minimum
-#	-- connection
+#		connection
 #	The amount of time the system has been running 
-#	-- time
+#		time
 
 
 
