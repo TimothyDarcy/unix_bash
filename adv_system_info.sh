@@ -16,27 +16,31 @@
 #	default maximum number of file descriptors able to be opened by process
 #		-o def-file-des
 
-#switch statement
 
+#while loop allows multiple flags to be entered
 while getopts "o:" flag; do
-	
+
+#switch statement provides better readability than if else statement
 	case $OPTARG in
 		cores)
-			echo "cores code"
+			echo "--Number of Cores and Sockets:"
 			#lscpu prints cpu info, grep limits that info
 			lscpu | grep -E 'Socket|Core\(s)'
 			;;
 		priority)
-			echo "Nice priority value:"
+			echo "--Nice priority value:"
 			nice
 			;;
 		proc)
-			echo "Current number of processes for user $USER:"
+			echo "--Current number of processes for user $USER:"
+			#ps -u will print the processes for current user
+			#awk counts the number of entries and prints out
 			ps -u | awk '$USER {count++} END{print count}' 
 			
 			;;
 		file-des)
-			echo "file descriptors open code"
+			echo "--Current number of open file descriptors for $USER:"
+			lsof -u $USER | wc -l
 			;;
 		def-file-des)
 			echo "Default file descriptor number code"
