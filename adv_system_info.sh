@@ -43,7 +43,8 @@ while getopts "o:" flag; do
 			lsof -u $USER | wc -l
 			;;
 		def-file-des)
-			echo "Default file descriptor number code"
+			echo "Max number of file descriptors that can be opened by a process:"
+			ulimit -n
 			;;
 	esac
 done
