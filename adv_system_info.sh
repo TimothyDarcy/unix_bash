@@ -22,7 +22,9 @@ while getopts "o:" flag; do
 	
 	case $OPTARG in
 		cores)
-			echo "cores code" 
+			echo "cores code"
+			#lscpu prints cpu info, grep limits that info
+			lscpu | grep -E 'Socket|Core\(s)'
 			;;
 		priority)
 			echo "priority code"
