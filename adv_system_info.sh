@@ -27,10 +27,13 @@ while getopts "o:" flag; do
 			lscpu | grep -E 'Socket|Core\(s)'
 			;;
 		priority)
-			echo "priority code"
+			echo "Nice priority value:"
+			nice
 			;;
 		proc)
-			echo "current user proceses code"
+			echo "Current number of processes for user $USER:"
+			ps -u | awk '$USER {count++} END{print count}' 
+			
 			;;
 		file-des)
 			echo "file descriptors open code"
