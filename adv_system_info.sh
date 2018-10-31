@@ -21,7 +21,7 @@
 while getopts "cnpfm" flag; do
 
 #switch statement provides better readability than if else statement
-	case $flag in
+	case "$flag" in
 		c)
 			echo "--Number of Cores and Sockets:"
 			#lscpu prints cpu info, grep limits that info
@@ -39,12 +39,20 @@ while getopts "cnpfm" flag; do
 			
 			;;
 		f)
+			#lsof lists  open files -u for the current user
+			#wc count the number of lines with the -l flag
 			echo "--Current number of open file descriptors for $USER:"
-			lsof -u $USER | wc -l
+			lsof -u "$USER" | wc -l
 			;;
-		m)
+		m)	
+			#ulimit is the user limits of system resources
+			#-n displays max file descriptors
 			echo "--Max number of file descriptors that can be opened by a process:"
 			ulimit -n
+			;;
+		*)
+			#triggers if no valid flag is entered
+			echo "--Invalid flag, please try again"
 			;;
 	esac
 done
