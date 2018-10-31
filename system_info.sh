@@ -9,7 +9,7 @@
 #		memory
 #	Amount of Free and Occupied disk space 
 #		disk
-#	Connection information including IP and MAC address at minimum
+#	Connection information including IP and MAC address
 #		connection
 #	The amount of time the system has been running 
 #		time

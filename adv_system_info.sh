@@ -18,7 +18,7 @@
 
 
 #while loop allows multiple flags to be entered
-while getopts "cnpfm" flag; do
+while getopts ":cnpfm" flag; do
 
 #switch statement provides better readability than if else statement
 	case "$flag" in
@@ -52,7 +52,7 @@ while getopts "cnpfm" flag; do
 			;;
 		*)
 			#triggers if no valid flag is entered
-			echo "--Invalid flag, please try again"
+			echo "--Invalid option: -$OPTARG - please try again"
 			;;
 	esac
 done
