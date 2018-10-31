@@ -2,48 +2,48 @@
 #Script Name: adv_system_info
 #Author: Timothy D'Arcy
 #Date Written: 28/10/18
-#Date Last Modified: 28/10/18
+#Date Last Modified: 31/10/18
 #The purpose of this script is to return one or more of the following
-#based on arguemnts passed in and retrieved using getopts. Flag is -o for option
+#based on option flags passed in.
 #	number of cpu cores on the system
-#		-o cores
-#	current process priority in a readable format
-#		-o priority
+#		-c
+#	current nice priority value
+#		-n
 #	current user processes
-#		-o proc
+#		-p
 #	number of open file descriptors belonging to current user
-#		-o file-des
+#		-f
 #	default maximum number of file descriptors able to be opened by process
-#		-o def-file-des
+#		-m
 
 
 #while loop allows multiple flags to be entered
-while getopts "o:" flag; do
+while getopts "cnpfm" flag; do
 
 #switch statement provides better readability than if else statement
-	case $OPTARG in
-		cores)
+	case $flag in
+		c)
 			echo "--Number of Cores and Sockets:"
 			#lscpu prints cpu info, grep limits that info
 			lscpu | grep -E 'Socket|Core\(s)'
 			;;
-		priority)
+		n)
 			echo "--Nice priority value:"
 			nice
 			;;
-		proc)
+		p)
 			echo "--Current number of processes for user $USER:"
 			#ps -u will print the processes for current user
 			#awk counts the number of entries and prints out
 			ps -u | awk '$USER {count++} END{print count}' 
 			
 			;;
-		file-des)
+		f)
 			echo "--Current number of open file descriptors for $USER:"
 			lsof -u $USER | wc -l
 			;;
-		def-file-des)
-			echo "Max number of file descriptors that can be opened by a process:"
+		m)
+			echo "--Max number of file descriptors that can be opened by a process:"
 			ulimit -n
 			;;
 	esac
